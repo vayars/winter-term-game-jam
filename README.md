@@ -8,7 +8,7 @@ For my first game, I plan on making a 2-D Platformer using LUA and Pico-8.
 For my second game, I plan on making a puzzle game using Java.
 
 ## Game #3 - Walking Simulator
-For my thrid game, I plan on making a walking simulator using Unreal Engine or Unity.
+For my third game, I plan on making a walking simulator using Unreal Engine or Unity.
 
 ## Game #4 - RPG
 For my fourth game, I plan on making a small RPG using C or C++.
