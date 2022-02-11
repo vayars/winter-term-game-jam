@@ -7,7 +7,11 @@ For my first game, I've created a small walking simulator using Unreal Engine. T
 Currently, the Game 1 folder just contains the source files for the game. To run the game, load the project in Unreal Engine. Then, from the 'Main' Level, choose "Standalone Game" for the play mode. 
 
 ## Game #2 - "Prisma" - Text Adventure
-For my second game, I plan on making a short text adventure using Python.
+For my second game, I've created a short text adventure using Python. Explore a nine-room ruin to gain access to a mysterious chalice and escape.
+### How to Play
+Note: Only works with Python 3.10+
+
+To run the game, execute the `main.py` file in the command line.
 
 ## Game #3 - "Simple Picross" - Puzzle
 For my third game, I've made a picross puzzle game using Java. Solve picross/nonogram to create small pictures. Currently consists of one level.
