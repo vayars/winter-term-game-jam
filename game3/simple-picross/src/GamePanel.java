@@ -193,7 +193,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	g.setColor(Color.black);
 	g.setFont(new Font("Ink Free", Font.BOLD, 30));
 	FontMetrics metrics2 = getFontMetrics(g.getFont());
-	g.drawString("Retry?", (SCREEN_WIDTH - metrics2.stringWidth("Retry")) / 2, (int) ((13 * UNIT_SIZE) / 2));
+	g.drawString("Retry?", (SCREEN_WIDTH - metrics2.stringWidth("Retry?")) / 2, ((int) ((13 * UNIT_SIZE) / 2)) + 5);
     }
 
     public void complete(Graphics g) {
@@ -205,9 +205,6 @@ public class GamePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	if (running) {
-	    // ???
-	}
 	repaint();
 
     }
