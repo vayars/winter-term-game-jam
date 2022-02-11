@@ -6,11 +6,13 @@ For my first game, I've created a small walking simulator using Unreal Engine. T
 ### How to Play
 Currently, the Game 1 folder just contains the source files for the game. To run the game, load the project in Unreal Engine. Then, from the 'Main' Level, choose "Standalone Game" for the play mode. 
 
-## Game #2 - RPG
-For my second game, I plan on making a command-line text adventure using C.
+## Game #2 - "Prisma" - Text Adventure
+For my second game, I plan on making a short text adventure using Python.
 
-## Game #3 - Puzzle
-For my third game, I plan on making a puzzle game using Java.
+## Game #3 - "Simple Picross" - Puzzle
+For my third game, I've made a picross puzzle game using Java. Solve picross/nonogram to create small pictures. Currently consists of one level.
+### How to Play
+To run the game, compile all of the files in the `src` folder. Then execute `PicrossGame.java`.
 
 ## Game #4 - 2-D Platformer
-For my fourth game, I plan on making a 2-D Platformer using LUA and Pico-8.
+For my fourth game, I plan on making a 2-D Platformer using LUA.
