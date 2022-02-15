@@ -23,6 +23,8 @@ public class GamePanel extends JPanel implements ActionListener {
     static final int BOARD_Y = 132;
     static final int[] L_ONE_X = { 132, 198, 198, 198, 198, 198, 264, 264, 264, 330, 330, 396 };
     static final int[] L_ONE_Y = { 198, 132, 198, 264, 330, 396, 264, 330, 396, 330, 396, 264 };
+    static final int[] L_TWO_X = { 132, 198, 198, 264, 264, 330, 330, 396 };
+    static final int[] L_TWO_Y = { 198, 132, 264, 198, 264, 330, 396, 264 };
     final ArrayList<Integer> yesX = new ArrayList<Integer>();
     final ArrayList<Integer> yesY = new ArrayList<Integer>();
     final ArrayList<Integer> noX = new ArrayList<Integer>();
@@ -30,7 +32,9 @@ public class GamePanel extends JPanel implements ActionListener {
     final ArrayList<Integer> markX = new ArrayList<Integer>();
     final ArrayList<Integer> markY = new ArrayList<Integer>();
     int health = 3;
+    int prevLevel = 1;
     int currentLevel = 1;
+    int maxLevels = 2;
     boolean running = false;
 
     GamePanel() {
@@ -63,7 +67,9 @@ public class GamePanel extends JPanel implements ActionListener {
 		g.drawRect(BOARD_X, BOARD_Y, BOARD_WIDTH, BOARD_HEIGHT);
 		if (currentLevel == 1) {
 		    drawLevelOne(g);
-		}
+	    } else if (currentLevel == 2) {
+		drawLevelTwo(g);
+	    }
 		// Draw the yes, nos, and marks.
 		g.setColor(Color.yellow);
 		for (int i = 0; i < markX.size(); i++) {
@@ -139,18 +145,58 @@ public class GamePanel extends JPanel implements ActionListener {
 		(6 * UNIT_SIZE) + ((int) ((UNIT_SIZE + 25) / 2)));
     }
 
+    public void drawLevelTwo(Graphics g) {
+	g.setColor(Color.white);
+	g.setFont(new Font("Ink Free", Font.BOLD, 25));
+	FontMetrics metrics1 = getFontMetrics(g.getFont());
+	g.drawString("1", (2 * UNIT_SIZE) + ((int) ((UNIT_SIZE - metrics1.stringWidth("1")) / 2)), (2 * UNIT_SIZE) - 8);
+	g.drawString("1", (3 * UNIT_SIZE) + ((int) ((UNIT_SIZE - metrics1.stringWidth("1")) / 2)),
+		(2 * UNIT_SIZE) - 8);
+	g.drawString("1", (3 * UNIT_SIZE) + ((int) ((UNIT_SIZE - metrics1.stringWidth("1")) / 2)),
+		(2 * UNIT_SIZE) - 25 - 16);
+	g.drawString("2", (4 * UNIT_SIZE) + ((int) ((UNIT_SIZE - metrics1.stringWidth("2")) / 2)), (2 * UNIT_SIZE) - 8);
+	g.drawString("2", (5 * UNIT_SIZE) + ((int) ((UNIT_SIZE - metrics1.stringWidth("2")) / 2)), (2 * UNIT_SIZE) - 8);
+	g.drawString("1", (6 * UNIT_SIZE) + ((int) ((UNIT_SIZE - metrics1.stringWidth("1")) / 2)), (2 * UNIT_SIZE) - 8);
+
+	g.drawString("1", ((2 * UNIT_SIZE) - (8 + metrics1.stringWidth("1"))),
+		(2 * UNIT_SIZE) + ((int) ((UNIT_SIZE + 25) / 2)));
+	g.drawString("1", ((2 * UNIT_SIZE) - (8 + metrics1.stringWidth("1"))),
+		(3 * UNIT_SIZE) + ((int) ((UNIT_SIZE + 25) / 2)));
+	g.drawString("1", ((2 * UNIT_SIZE) - (16 + metrics1.stringWidth("1") + metrics1.stringWidth("1"))),
+		(3 * UNIT_SIZE) + ((int) ((UNIT_SIZE + 25) / 2)));
+	g.drawString("2", ((2 * UNIT_SIZE) - (8 + metrics1.stringWidth("2"))),
+		(4 * UNIT_SIZE) + ((int) ((UNIT_SIZE + 25) / 2)));
+	g.drawString("1", ((2 * UNIT_SIZE) - (16 + metrics1.stringWidth("1") + metrics1.stringWidth("2"))),
+		(4 * UNIT_SIZE) + ((int) ((UNIT_SIZE + 25) / 2)));
+	g.drawString("1", ((2 * UNIT_SIZE) - (8 + metrics1.stringWidth("1"))),
+		(5 * UNIT_SIZE) + ((int) ((UNIT_SIZE + 25) / 2)));
+	g.drawString("1", ((2 * UNIT_SIZE) - (8 + metrics1.stringWidth("1"))),
+		(6 * UNIT_SIZE) + ((int) ((UNIT_SIZE + 25) / 2)));
+    }
+
     public void checkCorrect(int x, int y) {
 	boolean correct = false;
-	for (int i = 0; i < L_ONE_X.length; i++) {
-	    if (x == L_ONE_X[i] && y == L_ONE_Y[i]) {
-		correct = true;
-		break;
+	if (currentLevel == 1) {
+	    for (int i = 0; i < L_ONE_X.length; i++) {
+		if (x == L_ONE_X[i] && y == L_ONE_Y[i]) {
+		    correct = true;
+		    break;
+		}
+	    }
+	} else if (currentLevel == 2) {
+	    for (int i = 0; i < L_TWO_X.length; i++) {
+		if (x == L_TWO_X[i] && y == L_TWO_Y[i]) {
+		    correct = true;
+		    break;
+		}
 	    }
 	}
 	if (correct) {
 	    yesX.add(x);
 	    yesY.add(y);
-	    if (yesX.size() == L_ONE_X.length) {
+	    if (currentLevel == 1 && yesX.size() == L_ONE_X.length) {
+		running = false;
+	    } else if (currentLevel == 2 && yesX.size() == L_TWO_X.length) {
 		running = false;
 	    }
 	} else {
@@ -200,7 +246,34 @@ public class GamePanel extends JPanel implements ActionListener {
 	g.setColor(Color.white);
 	g.setFont(new Font("Ink Free", Font.BOLD, 75));
 	FontMetrics metrics = getFontMetrics(g.getFont());
-	g.drawString("Congrats!", (SCREEN_WIDTH - metrics.stringWidth("Congrats!")) / 2, SCREEN_HEIGHT / 2);
+	g.drawString("Congrats!", (SCREEN_WIDTH - metrics.stringWidth("Congrats!")) / 2, BOARD_Y - 33);
+
+	g.drawRect(BOARD_X, BOARD_Y, BOARD_WIDTH, BOARD_HEIGHT);
+	if (prevLevel == 1) {
+	    g.setColor(Color.yellow);
+	    for (int i = 0; i < L_ONE_X.length; i++) {
+		g.fillRect(L_ONE_X[i], L_ONE_Y[i], UNIT_SIZE, UNIT_SIZE);
+	    }
+	} else if (prevLevel == 2) {
+	    g.setColor(Color.pink);
+	    for (int i = 0; i < L_TWO_X.length; i++) {
+		if (i == 4) {
+		    g.setColor(Color.green);
+		}
+		g.fillRect(L_TWO_X[i], L_TWO_Y[i], UNIT_SIZE, UNIT_SIZE);
+	    }
+	}
+	g.setColor(Color.white);
+	g.fillRect((SCREEN_WIDTH / 2) - ((3 * UNIT_SIZE) / 2), (int) (7.5 * UNIT_SIZE), 3 * UNIT_SIZE, UNIT_SIZE);
+	g.setColor(Color.black);
+	g.setFont(new Font("Ink Free", Font.BOLD, 30));
+	FontMetrics metrics2 = getFontMetrics(g.getFont());
+	if (prevLevel < maxLevels) {
+	    g.drawString("Continue", (SCREEN_WIDTH - metrics2.stringWidth("Continue")) / 2,
+		    ((int) ((16 * UNIT_SIZE) / 2)) + 5);
+	} else if (prevLevel == maxLevels) {
+	    g.drawString("Quit", (SCREEN_WIDTH - metrics2.stringWidth("Quit")) / 2, ((int) ((16 * UNIT_SIZE) / 2)) + 5);
+	}
     }
 
     @Override
@@ -219,7 +292,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	    int button = e.getButton();
 	    // System.out.println("Mouse: " + mouseX + " " + mouseY + ". Grid: " + gridX + "
 	    // " + gridY);
-	    if (currentLevel == 1) {
+	    if (currentLevel > 0) {
         	    boolean empty = true;
         	    // Check to make sure there's no yes or nos in that spot
         	    for (int i = 0; i < yesX.size(); i++) {
@@ -255,7 +328,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		if (button == MouseEvent.BUTTON1) {
 		    if (gridX >= 3 * UNIT_SIZE && gridX <= 5 * UNIT_SIZE && gridY == 6 * UNIT_SIZE) {
 			running = true;
-			currentLevel = 1;
+			currentLevel = prevLevel;
 			yesX.clear();
 			yesY.clear();
 			noX.clear();
@@ -263,6 +336,26 @@ public class GamePanel extends JPanel implements ActionListener {
 			markX.clear();
 			markY.clear();
 			health = 3;
+		    }
+		}
+	    } else if (currentLevel == -2) {
+		if (button == MouseEvent.BUTTON1) {
+		    if (gridX >= 3 * UNIT_SIZE && gridX <= 5 * UNIT_SIZE && gridY > (int) (7.5 * UNIT_SIZE)
+			    && gridY < (int) (8.5 * UNIT_SIZE)) {
+			if (prevLevel < maxLevels) {
+			    running = true;
+			    currentLevel = prevLevel + 1;
+			    prevLevel += 1;
+			    yesX.clear();
+			    yesY.clear();
+			    noX.clear();
+			    noY.clear();
+			    markX.clear();
+			    markY.clear();
+			    health = 3;
+			} else if (prevLevel == maxLevels) {
+			    System.exit(0);
+			}
 		    }
 		}
 	    }
