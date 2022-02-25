@@ -11,4 +11,4 @@ For my second game, I've created a short text adventure using Python. Explore a 
 For my third game, I've made a picross puzzle game using Java. Solve picross/nonogram puzzles to create small pictures. Currently consists of two levels.
 
 ## Game #4 - "Castle Climber" - 2-D Platformer
-For my fourth game, I 've made a 2-D platformer using LUA and Pico-8. Leap your way to the top of an ice castle to save a captured prince. Currently consists of the tutorial level.
+For my fourth game, I've made a 2-D platformer using LUA and Pico-8. Leap your way to the top of an ice castle to save a captured prince. Currently consists of the tutorial level.
