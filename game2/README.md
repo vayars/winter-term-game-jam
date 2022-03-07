@@ -1,5 +1,5 @@
 ## Game #2 - "Prisma" - Text Adventure
-For my second game, I created a short text adventure using Python. The player must explore a nine-room ruin to gain access to a mysterious, multi-colored chalice.
+"Prisma" is a short text adventure coded in Python. The player must explore a nine-room ruin to gain access to a mysterious, multi-colored chalice.
 ### Project Goal
 My goal for this project was to focus on creating fun narrative and game mechanics within a limited medium. Without the use of graphics and sound, I wanted to push how I could portray an interactive story through text alone.
 ### What I Did
