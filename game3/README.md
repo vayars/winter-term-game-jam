@@ -8,7 +8,7 @@ I determined that I wanted to create a picross puzzle game and drafted several l
 During the six days I worked on this game, I learned how to use JPanel, JFrame, and AWT to create an interactable GUI.
 ### How to Run
 1. Clone this repository.
-2. Comile all of the files in `simple-picross/src` using `javac`.
+2. Compile all of the files in `simple-picross/src` using `javac`.
 3. Execute `PicrossGame.java` in the command line.
 ### How to Play
 To play the game, left click a box to fill it in. Right click a box to "mark" it. Right click a marked box to unmark it.
