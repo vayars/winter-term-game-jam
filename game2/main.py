@@ -14,7 +14,7 @@ class Main():
         builder = Build()
         items, rooms, doors = builder.buildSmall()
         game_done = False
-        print("You are an archeologist searching nearby ruins for guarded treasure. \nOn one of your expeditons, however, you are seperated from your team \nby an earthquake! Upon awaking, you notice that you are deep \nunderground in a mysterious and unkonwn ruin. After getting your \nbearings, it's time to try and find a way out!")
+        print("You are an archeologist searching nearby ruins for guarded treasure. \nOn one of your expeditions, however, you are separated from your team \nby an earthquake! Upon awaking, you notice that you are deep \nunderground in a mysterious and unknown ruin. After getting your \nbearings, it's time to try and find a way out!")
 
         # Game loop.
         curr_room = rooms[0]
